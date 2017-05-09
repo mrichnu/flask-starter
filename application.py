@@ -1,7 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from views import hello_page 
-import os
 
 DEBUG = False
 
@@ -13,9 +11,12 @@ app.config.from_object(__name__)
 # `SECRET_KEY` settings.
 app.config.from_envvar('FLASK_SETTINGS')
 
+# flask_sqlalchemy setup
 db = SQLAlchemy(app)
 
-app.register_blueprint(hello_page)
+# import views to mount them on the app. This could be refactored to use the
+# Blueprints functionality.
+from views import *
 
 def init_db():
     import models

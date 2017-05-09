@@ -1,7 +1,17 @@
-from flask import Blueprint
+from flask import request, session
+from application import app
+from models import User
 
-hello_page = Blueprint('hello_page', __name__, template_folder='templates')
-
-@hello_page.route('/')
+@app.route('/')
 def hello_world():
-    return "Hello, world!"
+    visit_count = session.get('visit_count', 0)
+    visit_count += 1
+    session['visit_count'] = visit_count
+    return "Hello, world! You are using {0}.<br />I have seen you {1} times.".\
+            format(request.headers['User-Agent'], visit_count)
+
+@app.route('/usercount')
+def user_count():
+    user_count = User.query.count()
+    return "Hello, world! There are {0} users in the database.".\
+            format(user_count)
