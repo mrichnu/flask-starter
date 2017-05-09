@@ -13,21 +13,21 @@ and `SQLALCHEMY_DATABASE_URI` settings. For example:
 
 Then you can run the app like this:
 
-    FLASK_SETTINGS=settings.cfg python application.py
+    FLASK_SETTINGS=settings.cfg python manage.py runserver
 
 Or, alternatively, export the `FLASK_SETTINGS` environment variable once:
 
     export FLASK_SETTINGS=settings.cfg
-    python application.py
+    python manage.py runserver
 
 
 ## Setting up the database
 
 An `initdb` command is included to set up the database automatically:
 
-    FLASK_APP=application.py FLASK_SETTINGS=settings.cfg flask initdb
+    FLASK_APP=application.py FLASK_SETTINGS=settings.cfg python manage.py initdb
 
 A `resetdb` command is included as well to drop and recreate the database (use
 with caution, obviously!)
 
-    FLASK_APP=application.py FLASK_SETTINGS=settings.cfg flask resetdb
+    FLASK_APP=application.py FLASK_SETTINGS=settings.cfg python manage.py resetdb
