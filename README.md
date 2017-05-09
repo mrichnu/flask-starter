@@ -13,11 +13,13 @@ and `SQLALCHEMY_DATABASE_URI` settings. For example:
 
 Then you can run the app like this:
 
-    FLASK_SETTINGS=settings.cfg python manage.py runserver
+    FLASK_APP=application.py FLASK_SETTINGS=settings.cfg python manage.py runserver
 
-Or, alternatively, export the `FLASK_SETTINGS` environment variable once:
+Or, alternatively, export the `FLASK_SETTINGS` and `FLASK_APP` environment
+variables:
 
     export FLASK_SETTINGS=settings.cfg
+    export FLASK_APP=application.py
     python manage.py runserver
 
 

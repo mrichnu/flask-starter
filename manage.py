@@ -7,7 +7,7 @@ manager = Manager(app)
 def do_init_db():
     if not database_exists(db.engine.url):
         create_database(db.engine.url)
-        db.create_all()
+    db.create_all()
 
 def do_reset_db():
     db.drop_all()
@@ -22,6 +22,10 @@ def initdb():
 def resetdb():
     do_reset_db()
     print("Database dropped and reinitialized.")
+
+@manager.shell
+def make_shell_context():
+    return dict(app=app, db=db)
 
 if __name__ == "__main__":
     manager.run()
