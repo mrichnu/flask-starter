@@ -1,7 +1,7 @@
-# Changing Tides Database App
+# Flask starter app
 
-This repository contains a web app (written with Flask) to manage a database of
-materials related to carceral reform in the United States.
+This repository contains the skeleton for a flask app with sqlalchemy
+integration, flask-script example commands, and unit tests.
 
 To start the app in local debug mode, first create a file to hold your local
 settings, named e.g. `settings.cfg` containing at a minimum the `SECRET_KEY`
