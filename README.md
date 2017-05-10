@@ -33,3 +33,13 @@ A `resetdb` command is included as well to drop and recreate the database (use
 with caution, obviously!)
 
     FLASK_APP=application.py FLASK_SETTINGS=settings.cfg python manage.py resetdb
+
+## Running the tests
+
+Unit tests are in the `tests.py` module, and can be run like so:
+
+    FLASK_SETTINGS=testingsettings.cfg python test.py
+
+Obviously, the file `testingsettings.cfg` must exist and have appropriate
+settings for the DEBUG and SQLALCHEMY_DATABASE_URI configuration keys.
+

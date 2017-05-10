@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 DEBUG = False
+SECRET_KEY = os.urandom(24)
 
 app = Flask(__name__)
 app.config.from_object(__name__)
