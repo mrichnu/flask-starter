@@ -6,21 +6,24 @@ materials related to carceral reform in the United States.
 To start the app in local debug mode, first create a file to hold your local
 settings, named e.g. `settings.cfg` containing at a minimum the `SECRET_KEY`
 and `SQLALCHEMY_DATABASE_URI` settings. For example:
-
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@host/database_name'
-    SECRET_KEY = 'secret'
+```
+DEBUG = True
+SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@host/database_name'
+SECRET_KEY = 'secret'
+```
 
 Then you can run the app like this:
-
-    $ FLASK_APP=application.py FLASK_SETTINGS=settings.cfg ./manage.py runserver
+```sh
+$ FLASK_APP=application.py FLASK_SETTINGS=settings.cfg ./manage.py runserver
+```
 
 Or, alternatively, export the `FLASK_SETTINGS` and `FLASK_APP` environment
 variables:
-
-    $ export FLASK_SETTINGS=settings.cfg
-    $ export FLASK_APP=application.py
-    $ ./manage.py runserver
+```sh
+$ export FLASK_SETTINGS=settings.cfg
+$ export FLASK_APP=application.py
+$ ./manage.py runserver
+```
 
 For convenience, I create a `setenv.sh` file that exports the appropriate
 values, and source it when I activate the virtualenv.
@@ -28,19 +31,22 @@ values, and source it when I activate the virtualenv.
 ## Setting up the database
 
 An `initdb` command is included to set up the database automatically:
-
-    $ FLASK_SETTINGS=settings.cfg ./manage.py initdb
+```sh
+$ FLASK_SETTINGS=settings.cfg ./manage.py initdb
+```
 
 A `resetdb` command is included as well to drop and recreate the database (use
 with caution, obviously!)
-
-    $ FLASK_SETTINGS=settings.cfg ./manage.py resetdb
+```sh
+$ FLASK_SETTINGS=settings.cfg ./manage.py resetdb
+```
 
 ## Running the tests
 
 Unit tests are in the `tests.py` module, and can be run like so:
-
-    $ FLASK_SETTINGS=testingsettings.cfg python test.py
+```sh
+$ FLASK_SETTINGS=testingsettings.cfg python test.py
+```
 
 Obviously, the file `testingsettings.cfg` must exist and have appropriate
 settings for the `DEBUG` and `SQLALCHEMY_DATABASE_URI` configuration keys. It's
@@ -53,19 +59,21 @@ whenever the test suite is run.
 
 The [Flask-Script](https://flask-script.readthedocs.io/en/latest/) package is
 included and the `manage.py` module is a convenient place to add commands that
-need to be run manually (or via cron) that have access to the database models,
+need to be run manually (or via cron) that have access to the database models
 and flask app context. Just add a function with the `@manager.command`
 decorator and then your function will be available as a command. For example,
 if the following function were created in `manage.py`:
-
-    @manager.command
-    def hello():
-        print("Hello!")
+```python
+@manager.command
+def hello():
+    print("Hello!")
+```
 
 You could run it from the shell with this incantation:
-
-   $ FLASK_SETTINGS=settings.cfg ./manage.py hello
-   Hello!
+```sh
+$ FLASK_SETTINGS=settings.cfg ./manage.py hello
+Hello!
+```
 
 Note that the `runserver` and `shell` commands are available, in addition to
 any commands in `manage.py`.
