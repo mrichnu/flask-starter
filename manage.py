@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from flask_script import Manager
 from sqlalchemy_utils.functions import database_exists, create_database
 from application import app, db
